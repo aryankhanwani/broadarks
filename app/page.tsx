@@ -1,65 +1,142 @@
-import Image from "next/image";
+import type { Metadata } from "next";
 
-export default function Home() {
+import { type FaqItem } from "@/components/ui/Faq";
+import FaqSection from "@/components/sections/FaqSection";
+import CtaBand from "@/components/ui/CtaBand";
+import Hero from "@/components/sections/Hero";
+import ProofBand from "@/components/sections/ProofBand";
+import WhyWeExist from "@/components/sections/WhyWeExist";
+import DivisionsShowcase from "@/components/sections/DivisionsShowcase";
+import Principles from "@/components/sections/Principles";
+import LeadershipGrid from "@/components/sections/LeadershipGrid";
+import { ORG } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "BroadArks — Workforce Skilling, EdTech & Social Impact | India",
+  description:
+    "BroadArks Technology builds workforce capability, community impact, and sustainable livelihoods across India — through Y&Now, BroadArks Foundation, and specialist divisions. ISO 9001:2015 certified. Bhopal, MP.",
+  alternates: { canonical: "/" },
+};
+
+/* ================================================================
+   HOMEPAGE FAQ
+   Also emitted as FAQPage JSON-LD below. Answers stay at two to
+   three sentences because answer engines quote them verbatim and
+   truncate anything longer mid-claim.
+   ================================================================ */
+const FAQS: FaqItem[] = [
+  {
+    q: "What is BroadArks Technology?",
+    a: `${ORG.legalName} is an ISO 9001:2015 certified company based in Bhopal, Madhya Pradesh. It runs four divisions: Y&Now, BroadArks Foundation, Kari Green and Vihaanga AI.`,
+  },
+  {
+    q: "What is the difference between BroadArks and Y&Now?",
+    a: "BroadArks is the parent company. Y&Now is its skills training division, at yandnow.com. All contracts are signed by BroadArks Technology Pvt. Ltd.",
+  },
+  {
+    q: "What is BroadArks Foundation?",
+    a: "A separately registered nonprofit society, established in 2014, running education, healthcare and livelihood programmes. It operates at broadarksfoundation.org and is a different legal entity from BroadArks Technology Pvt. Ltd.",
+  },
+  {
+    q: "Is BroadArks ISO certified?",
+    a: "Yes — ISO 9001:2015. The certificate number and validity are in the governance record on our About page.",
+  },
+  {
+    q: "Who founded BroadArks?",
+    a: "Pankaj Dutta and Dr. Kaveri Dutta, in 2020, in Bhopal.",
+  },
+  {
+    q: "How do I contact BroadArks?",
+    a: (
+      <>
+        Email{" "}
+        <a className="text-primary-600 underline underline-offset-2" href={`mailto:${ORG.email}`}>
+          {ORG.email}
+        </a>{" "}
+        or call{" "}
+        <a className="text-primary-600 underline underline-offset-2" href={ORG.phoneHref}>
+          {ORG.phone}
+        </a>
+        . We reply within two working days.
+      </>
+    ),
+  },
+];
+
+export default function HomePage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text:
+          typeof f.a === "string"
+            ? f.a
+            : `Email ${ORG.email} or call ${ORG.phone}. We reply within two working days.`,
+      },
+    })),
+  };
+
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: ORG.legalName,
+    alternateName: ORG.shortName,
+    url: "https://broadarks.com",
+    email: ORG.email,
+    telephone: ORG.phone,
+    foundingDate: ORG.founded,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: `${ORG.address.line1}, ${ORG.address.line2}`,
+      addressLocality: ORG.address.city,
+      postalCode: ORG.address.postalCode,
+      addressRegion: ORG.address.state,
+      addressCountry: "IN",
+    },
+    hasCredential: ORG.iso,
+    subOrganization: [
+      { "@type": "Organization", name: "Y&Now", url: "https://yandnow.com" },
+      {
+        "@type": "Organization",
+        name: "BroadArks Foundation",
+        url: "https://broadarksfoundation.org",
+      },
+    ],
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
+      <Hero />
+      <ProofBand />
+      <WhyWeExist />
+      <DivisionsShowcase />
+      <Principles />
+      <LeadershipGrid />
+
+      <FaqSection
+        items={FAQS} className="bg-white"
+      />
+
+      <CtaBand
+        title="Not sure who you need"
+        highlight="to talk to?"
+        body="Tell us what you are trying to do and we will point you at the right division. We reply within two working days."
+        primary={{ label: "Contact BroadArks", href: "/contact" }}
+        secondary={{ label: "Explore our divisions", href: "/divisions" }}
+      />
+    </>
   );
 }

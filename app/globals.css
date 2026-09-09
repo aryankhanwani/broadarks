@@ -1,26 +1,325 @@
 @import "tailwindcss";
 
+/* ================================================================
+   DESIGN SYSTEM — BroadArks Technology Pvt. Ltd.
+   "Innovation & Beyond · One World"
+
+   Source of truth for colour, type, spacing, radius, elevation and
+   motion. Tailwind v4 CSS-first configuration via @theme — every
+   token below is emitted as a utility (e.g. --color-primary-500
+   gives you bg-primary-500 / text-primary-500 / border-primary-500).
+
+   Live reference: /design-system
+   ================================================================ */
+
+@theme {
+  /* --------------------------------------------------------------
+     1 · TYPEFACES
+     next/font injects --font-heading-sans (Instrument Sans) and
+     --font-body-sans (Inter) onto <html>. Aliased here so Tailwind's
+     font-heading / font-body utilities resolve.
+
+     Headings  Instrument Sans  400 · 500 · 600 · 700
+     Body      Inter            400 · 500 · 600 · 700
+
+     Replaces Montserrat. Montserrat remains the logo
+     typeface — it is not used for running text on this site.
+     -------------------------------------------------------------- */
+  --font-heading: var(--font-heading-sans, "Instrument Sans"), ui-sans-serif, system-ui, sans-serif;
+  --font-body:    var(--font-body-sans, "Inter"), ui-sans-serif, system-ui, sans-serif;
+
+  /* --------------------------------------------------------------
+     2 · COLOUR
+
+     Brand Book palette, unchanged:
+       Primary    #2E3191  R46  G49  B145   deep indigo
+       Secondary  #27AAE1  R39  G170 B225   sky blue
+       Brand Gray #606161  R96  G97  B97
+       White      #FFFFFF
+
+     Primary carries authority and is the default for headings,
+     dark panels and primary CTAs. Secondary is an *accent only* —
+     eyebrows, rules, underlines, hover states, data highlights.
+     Never set body copy in Secondary; it fails contrast at 16px.
+     -------------------------------------------------------------- */
+
+  /* Primary — indigo (500 = brand exact) */
+  --color-primary-50:  #eeeef8;
+  --color-primary-100: #d9dbf0;
+  --color-primary-200: #b4b7e2;
+  --color-primary-300: #8b8ed3;
+  --color-primary-400: #5f63bd;
+  --color-primary-500: #2E3191;
+  --color-primary-600: #272a7e;
+  --color-primary-700: #1f2267;
+  --color-primary-800: #171950;
+  --color-primary-900: #10123a;
+  --color-primary-950: #080920;
+
+  /* Secondary — sky (500 = brand exact) */
+  --color-secondary-50:  #e8f6fd;
+  --color-secondary-100: #c9ebfa;
+  --color-secondary-200: #96d8f4;
+  --color-secondary-300: #60c2ec;
+  --color-secondary-400: #3ab3e7;
+  --color-secondary-500: #27AAE1;
+  --color-secondary-600: #1f8bb8;
+  --color-secondary-700: #196e92;
+  --color-secondary-800: #12526d;
+  --color-secondary-900: #0b3648;
+  --color-secondary-950: #061e28;
+
+  /* Brand gray — the third brand colour (500 = brand exact) */
+  --color-gray-50:  #f6f6f6;
+  --color-gray-100: #ebebeb;
+  --color-gray-200: #d6d6d6;
+  --color-gray-300: #b9b9b9;
+  --color-gray-400: #8f9090;
+  --color-gray-500: #606161;
+  --color-gray-600: #4e4f4f;
+  --color-gray-700: #3d3e3e;
+  --color-gray-800: #2b2c2c;
+  --color-gray-900: #1a1a1a;
+
+  /* Semantic neutrals */
+  --color-ink:        #14151c;  /* headings, high-contrast text     */
+  --color-ink-muted:  #4b4d5a;  /* body copy on white               */
+  --color-surface:    #f5f7fa;  /* tinted section background        */
+  --color-surface-2:  #eef1f7;  /* second-level tint                */
+  --color-line:       #e4e7ee;  /* hairline borders                 */
+
+  /* --------------------------------------------------------------
+     3 · TYPE SCALE — fluid
+     Every step clamps between a mobile and a desktop size so
+     headings shrink gracefully instead of wrapping to four lines
+     on a 375px screen.
+     -------------------------------------------------------------- */
+  --text-display:   clamp(2.15rem, 1.35rem + 3.7vw, 4.5rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.03em;
+
+  --text-h1:        clamp(2rem, 1.45rem + 2.4vw, 3.25rem);
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.025em;
+
+  --text-h2:        clamp(1.625rem, 1.3rem + 1.5vw, 2.5rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.02em;
+
+  --text-h3:        clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.015em;
+
+  --text-h4:        clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --text-h4--line-height: 1.4;
+  --text-h4--letter-spacing: -0.01em;
+
+  --text-lead:      clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  --text-lead--line-height: 1.65;
+
+  /* --------------------------------------------------------------
+     4 · RADIUS
+     -------------------------------------------------------------- */
+  --radius-card: 14px;
+  --radius-pill: 999px;
+
+  /* --------------------------------------------------------------
+     5 · ELEVATION
+     Neutral-tinted, never pure black — pure black shadows read
+     grey and dirty against the indigo.
+     -------------------------------------------------------------- */
+  --shadow-card:  0 1px 2px rgba(20, 21, 28, 0.04), 0 8px 24px -8px rgba(20, 21, 28, 0.10);
+  --shadow-lift:  0 2px 4px rgba(20, 21, 28, 0.05), 0 18px 40px -12px rgba(20, 21, 28, 0.16);
+  --shadow-glow:  0 0 40px -6px rgba(39, 170, 225, 0.35);
+
+  /* --------------------------------------------------------------
+     6 · MOTION
+     One easing curve site-wide. Durations are deliberately short —
+     motion here is punctuation, not choreography.
+     -------------------------------------------------------------- */
+  --ease-brand: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 180ms;
+  --duration-base: 320ms;
+  --duration-slow: 640ms;
+}
+
+/* ================================================================
+   BASE
+   ================================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
+  /* Offset anchored sections so the sticky header never covers them. */
+  scroll-padding-top: 6rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-primary-500);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-secondary-500);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ================================================================
+   UTILITIES
+   ================================================================ */
+/* Gradients ----------------------------------------------------
+   The site is light throughout — the homepage hero included, since
+   it became type on white with the photography in a card beside it.
+   Depth comes from tinted panels, soft blooms and hairlines; heavy
+   navy gradients behind body copy read muddy and fight the
+   photography, so they are not used.
+   -------------------------------------------------------------- */
+
+/* Tinted panel — page mastheads and closing CTAs. A cool wash that
+   lifts off white without ever getting dark enough to need
+   reversed text. */
+@utility bg-wash {
+  background-image: linear-gradient(168deg, #f2f5fc 0%, #eef2fa 46%, #e9f4fd 100%);
+}
+
+/* Second tint, warmer toward the sky accent. Used to alternate
+   consecutive tinted sections so they don't merge into one band. */
+@utility bg-wash-sky {
+  background-image: linear-gradient(168deg, #eef7fd 0%, #f4f7fc 100%);
+}
+
+@utility bg-gradient-subtle {
+  background-image: linear-gradient(180deg, #ffffff 0%, var(--color-surface) 100%);
+}
+
+/* Solid brand fill — reserved for small accents (icon plates,
+   active pills), never for a full section behind body copy. */
+@utility bg-gradient-brand {
+  background-image: linear-gradient(135deg, #2E3191 0%, #27AAE1 100%);
+}
+
+@utility bg-gradient-veil {
+  /* Bottom-weighted scrim for white type over photography. Retained
+     for any full-bleed image panel; the homepage no longer uses it. */
+  background-image: linear-gradient(
+    180deg,
+    rgba(8, 9, 32, 0.70) 0%,
+    rgba(8, 9, 32, 0.38) 38%,
+    rgba(8, 9, 32, 0.76) 100%
+  );
+}
+
+/* Eyebrow / kicker label --------------------------------------- */
+@utility eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* Tabular figures for stat blocks ------------------------------ */
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Vertical rhythm for a full-width section --------------------- */
+@utility section-y {
+  padding-block: clamp(3.5rem, 2rem + 6vw, 7rem);
+}
+@utility section-y-sm {
+  padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+}
+
+/* Marquee ------------------------------------------------------
+   Two identical tracks sit side by side; each slides left by exactly
+   its own width, so the loop point is invisible. Duration is long
+   on purpose — a fast marquee reads as a banner ad.
+   -------------------------------------------------------------- */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@utility animate-marquee {
+  animation: marquee 42s linear infinite;
+}
+
+/* Hide scrollbar on horizontal rails --------------------------- */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+/* ================================================================
+   TYPOGRAPHY CLASSES
+   Semantic shorthands so pages don't re-declare family + weight
+   + tracking on every heading.
+   ================================================================ */
+@layer components {
+  .t-display {
+    font-family: var(--font-heading);
+    font-size: var(--text-display);
+    line-height: var(--text-display--line-height);
+    letter-spacing: var(--text-display--letter-spacing);
+    font-weight: 600;
+  }
+  .t-h1 {
+    font-family: var(--font-heading);
+    font-size: var(--text-h1);
+    line-height: var(--text-h1--line-height);
+    letter-spacing: var(--text-h1--letter-spacing);
+    font-weight: 600;
+  }
+  .t-h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+    letter-spacing: var(--text-h2--letter-spacing);
+    font-weight: 600;
+  }
+  .t-h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    letter-spacing: var(--text-h3--letter-spacing);
+    font-weight: 600;
+  }
+  .t-h4 {
+    font-family: var(--font-heading);
+    font-size: var(--text-h4);
+    line-height: var(--text-h4--line-height);
+    letter-spacing: var(--text-h4--letter-spacing);
+    font-weight: 600;
+  }
+  .t-lead {
+    font-family: var(--font-body);
+    font-size: var(--text-lead);
+    line-height: var(--text-lead--line-height);
+    font-weight: 400;
+    color: var(--color-ink-muted);
+  }
+  .t-body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-ink-muted);
+  }
 }
