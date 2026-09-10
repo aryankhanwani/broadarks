@@ -76,11 +76,11 @@ export default function PersonCard({ person, featured }: { person: Person; featu
       <article
         className={
           featured
-            ? "h-full rounded-card border border-line bg-white p-6 shadow-card sm:p-7"
-            : "h-full rounded-card border border-line bg-white p-5 sm:p-6"
+            ? "flex h-full flex-col rounded-card border border-line bg-white p-5 shadow-card sm:p-6"
+            : "flex h-full flex-col rounded-card border border-line bg-white p-5"
         }
       >
-        <div className="flex items-start gap-4">
+        <div className="flex items-start gap-3.5">
           <Portrait person={person} size={featured ? "lg" : "sm"} />
           <div className="min-w-0 pt-0.5">
             <h3 className={featured ? "t-h4 text-ink" : "font-heading text-[15px] font-semibold tracking-tight text-ink"}>
@@ -90,21 +90,23 @@ export default function PersonCard({ person, featured }: { person: Person; featu
           </div>
         </div>
 
-        <p className="mt-4 line-clamp-3 text-[14px] leading-relaxed text-ink-muted">{person.blurb}</p>
+        <p className="mt-3.5 line-clamp-3 text-[14px] leading-relaxed text-ink-muted">{person.blurb}</p>
 
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="group mt-4 inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary-600 transition-colors hover:text-primary-700"
-        >
-          Read more
-          <ArrowRight
-            size={14}
-            strokeWidth={2.5}
-            aria-hidden
-            className="transition-transform duration-300 ease-[--ease-brand] group-hover:translate-x-1"
-          />
-        </button>
+        <div className="mt-4 flex flex-1 items-end border-t border-line pt-4">
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="group inline-flex items-center gap-1.5 rounded-pill border border-line px-3.5 py-1.5 text-[12.5px] font-semibold text-ink transition-colors duration-300 hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600"
+          >
+            Read more
+            <ArrowRight
+              size={13}
+              strokeWidth={2.5}
+              aria-hidden
+              className="transition-transform duration-300 ease-[--ease-brand] group-hover:translate-x-0.5"
+            />
+          </button>
+        </div>
       </article>
 
       <AnimatePresence>

@@ -1,11 +1,11 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, ArrowUpRight, CircleDashed } from "lucide-react";
+import { ArrowUpRight, CircleDashed } from "lucide-react";
 
 import Container from "@/components/ui/Container";
 import PageHero from "@/components/ui/PageHero";
 import Eyebrow from "@/components/ui/Eyebrow";
+import Button from "@/components/ui/Button";
 import { type FaqItem } from "@/components/ui/Faq";
 import FaqSection from "@/components/sections/FaqSection";
 import CtaBand from "@/components/ui/CtaBand";
@@ -108,16 +108,16 @@ function DivisionSection({ division: d, flip }: { division: Division; flip: bool
             </div>
 
             {d.audience.length > 0 && (
-              <Reveal delay={0.1} className="mt-7 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[14.5px]">
-                <span className="font-semibold text-ink">Built for</span>
-                <span className="text-ink-muted">{d.audience.join(" · ")}</span>
+              <Reveal delay={0.1} className="mt-7 text-[14.5px]">
+                <span className="block font-semibold text-ink">Built for</span>
+                <span className="mt-1 block text-ink-muted">{d.audience.join(" · ")}</span>
               </Reveal>
             )}
 
             {d.proof && d.proof.length > 0 && (
-              <Reveal delay={0.14} className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[14.5px]">
-                <span className="font-semibold text-ink">Works with</span>
-                <span className="text-ink-muted">
+              <Reveal delay={0.14} className="mt-4 text-[14.5px]">
+                <span className="block font-semibold text-ink">Works with</span>
+                <span className="mt-1 block text-ink-muted">
                   {d.proof.join(" · ")} and 3,800+ organisations
                 </span>
               </Reveal>
@@ -189,7 +189,7 @@ export default function DivisionsPage() {
     <>
       <PageHero
         eyebrow="Our divisions"
-        title="Four capabilities."
+        title="Four divisions."
         highlight="One front door."
         lead={ONE_LINE}
       >
@@ -238,18 +238,9 @@ export default function DivisionsPage() {
             ))}
           </Stagger>
           <Reveal delay={0.18} className="mt-8">
-            <Link
-              href="/approach"
-              className="group inline-flex items-center gap-2 text-[14px] font-semibold text-white/85 transition-colors hover:text-white"
-            >
+            <Button href="/approach" variant="secondary" onDark>
               How an engagement runs
-              <ArrowRight
-                size={15}
-                strokeWidth={2.5}
-                aria-hidden
-                className="transition-transform duration-300 ease-[--ease-brand] group-hover:translate-x-1"
-              />
-            </Link>
+            </Button>
           </Reveal>
         </Container>
       </section>

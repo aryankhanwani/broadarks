@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Building, FileCheck2, MapPin, ShieldCheck } from "lucide-react";
 
@@ -317,6 +318,32 @@ export default function AboutPage() {
                   </dd>
                 </div>
               ))}
+
+              <div className="bg-white px-5 py-4 sm:px-6 sm:py-5">
+                <dt className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-gray-500">
+                  Policies
+                </dt>
+                <dd className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-[14.5px] leading-relaxed">
+                  <Link
+                    href="/privacy-and-policies"
+                    className="text-primary-600 underline underline-offset-2 hover:text-primary-700"
+                  >
+                    Privacy policy
+                  </Link>
+                  <Link
+                    href="/terms-conditions-and-legal"
+                    className="text-primary-600 underline underline-offset-2 hover:text-primary-700"
+                  >
+                    Terms &amp; conditions
+                  </Link>
+                  <Link
+                    href="/sitemap"
+                    className="text-primary-600 underline underline-offset-2 hover:text-primary-700"
+                  >
+                    Site map
+                  </Link>
+                </dd>
+              </div>
             </dl>
           </Reveal>
 

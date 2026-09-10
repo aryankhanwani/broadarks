@@ -106,10 +106,21 @@ export default function Footer() {
             <span className="mt-1 block text-[13px] text-ink-muted">Mon–Fri, business hours IST</span>
           </a>
 
-          <div className="bg-white p-6 sm:p-7">
+          <a
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ORG.addressOneLine)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group bg-white p-6 transition-colors duration-300 hover:bg-primary-50 sm:p-7"
+          >
             <span className="flex items-center gap-2.5">
               <MapPin size={16} className="text-secondary-500" aria-hidden />
               <span className="eyebrow text-gray-500">Registered office</span>
+              <ArrowUpRight
+                size={13}
+                strokeWidth={2.5}
+                aria-hidden
+                className="ml-auto opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
             </span>
             <address className="mt-3 text-[14px] not-italic leading-relaxed text-ink">
               {ORG.address.line1}
@@ -118,7 +129,7 @@ export default function Footer() {
               <br />
               {ORG.address.city} – {ORG.address.postalCode}, {ORG.address.state}
             </address>
-          </div>
+          </a>
         </div>
 
         {/* ---- Band 2: links ------------------------------------ */}
@@ -215,13 +226,18 @@ export default function Footer() {
         {/* Oversized lockup. Clipped at the baseline so it reads as a
             watermark closing the page rather than a fifth logo.
 
+            Sized to stay at or below the source file's native 190px
+            height — the previous version stretched it to ~190% of a
+            much taller container, upscaling well past its native
+            resolution and reading as blurred. This keeps it sharp.
+
             A CSS background, not <Image>: it is purely decorative, and
             as a real image node Next counts it as an LCP candidate on
             short pages — which is exactly backwards for something at
             the very bottom that nobody is waiting to see. */}
         <div
           aria-hidden
-          className="h-[13vw] max-h-40 min-h-16 bg-[url('/logo-type.png')] bg-[length:auto_190%] bg-[position:center_top] bg-no-repeat opacity-[0.07]"
+          className="h-20 sm:h-24 md:h-28 bg-[url('/logo-type.png')] bg-[length:auto_100%] bg-[position:center_top] bg-no-repeat opacity-[0.07]"
         />
       </div>
     </footer>

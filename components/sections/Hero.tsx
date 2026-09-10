@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ArrowLeft, ArrowRight, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { EASE } from "@/components/ui/motion";
@@ -212,7 +212,7 @@ function MediaCarousel({ reduce }: { reduce: boolean }) {
           className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-primary-950/75 to-transparent"
         />
 
-        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-6">
+        <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
           <AnimatePresence mode="wait">
             <motion.p
               key={active}
@@ -226,15 +226,6 @@ function MediaCarousel({ reduce }: { reduce: boolean }) {
               {SLIDES[active].caption}
             </motion.p>
           </AnimatePresence>
-
-          <div className="flex shrink-0 gap-2">
-            <CarouselButton label="Previous image" onClick={() => go(active - 1)}>
-              <ArrowLeft size={15} strokeWidth={2.5} aria-hidden />
-            </CarouselButton>
-            <CarouselButton label="Next image" onClick={() => go(active + 1)}>
-              <ArrowRight size={15} strokeWidth={2.5} aria-hidden />
-            </CarouselButton>
-          </div>
         </div>
       </div>
 
@@ -267,26 +258,5 @@ function MediaCarousel({ reduce }: { reduce: boolean }) {
         ))}
       </div>
     </div>
-  );
-}
-
-function CarouselButton({
-  label,
-  onClick,
-  children,
-}: {
-  label: string;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-label={label}
-      className="grid h-9 w-9 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-sm transition-colors duration-[--duration-base] hover:bg-white hover:text-primary-600"
-    >
-      {children}
-    </button>
   );
 }

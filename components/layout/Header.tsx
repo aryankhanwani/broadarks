@@ -10,7 +10,6 @@ import {
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
-  useSpring,
 } from "motion/react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { DIVISIONS, NAV, ORG, divisionHref } from "@/lib/site";
@@ -52,11 +51,7 @@ export default function Header() {
   const [drawer, setDrawer] = useState(false);
   const closeTimer = useRef<number | null>(null);
 
-  /* Scroll progress rail. Spring-smoothed so it glides instead of
-     stuttering on every wheel tick. */
-  const { scrollY, scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 220, damping: 40, mass: 0.4 });
-
+  const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (y) => setCondensed(y > 60));
 
   useEffect(() => {
@@ -90,13 +85,6 @@ export default function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      {/* Scroll progress — a 2px hairline, not a loading bar. */}
-      <motion.div
-        aria-hidden
-        style={{ scaleX: progress }}
-        className="absolute inset-x-0 top-0 h-[2px] origin-left bg-secondary-500"
-      />
-
       {/* The capsule, from the very first pixel on every page — it
           firms up on scroll rather than materialising on scroll. */}
       <div className="relative z-50 mx-auto mt-3 max-w-7xl px-5 transition-all duration-500 ease-[--ease-brand] sm:mt-4 sm:px-6 lg:px-8">
@@ -160,14 +148,14 @@ export default function Header() {
           {/* ---- Desktop CTA ------------------------------------- */}
           <Link
             href="/contact"
-            className="group hidden items-center gap-2 rounded-pill bg-primary-500 px-5 py-2.5 text-[13.5px] font-semibold text-white transition-all duration-500 ease-[--ease-brand] will-change-transform hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-lift lg:inline-flex"
+            className="group hidden items-center gap-2 rounded-pill bg-primary-500 px-5 py-2.5 text-[13.5px] font-semibold text-white transition-colors duration-300 ease-[--ease-brand] hover:bg-primary-600 lg:inline-flex"
           >
             Talk to us
             <ArrowUpRight
               size={15}
               strokeWidth={2.5}
               aria-hidden
-              className="transition-transform duration-500 ease-[--ease-brand] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              className="transition-transform duration-300 ease-[--ease-brand] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             />
           </Link>
 

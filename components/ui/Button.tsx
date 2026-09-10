@@ -37,13 +37,13 @@ export default function Button({
 }: ButtonProps) {
   const base =
     "group inline-flex items-center justify-center gap-0 rounded-pill px-6 py-3 text-sm font-semibold " +
-    "transition-[background-color,border-color,color,box-shadow,transform] duration-500 " +
-    "ease-[--ease-brand] will-change-transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]";
+    "transition-[background-color,border-color,color] duration-300 " +
+    "ease-[--ease-brand] active:scale-[0.98]";
 
   const styles: Record<Variant, string> = {
     primary: onDark
       ? "bg-white text-primary-600 hover:bg-secondary-50 shadow-card"
-      : "bg-primary-500 text-white shadow-card hover:bg-primary-600 hover:shadow-lift",
+      : "bg-primary-500 text-white shadow-card hover:bg-primary-600",
     secondary: onDark
       ? "border border-white/35 text-white hover:border-white/70 hover:bg-white/10 backdrop-blur-sm"
       : "border border-line text-ink hover:border-primary-300 hover:bg-primary-50",
@@ -56,10 +56,10 @@ export default function Button({
 
   const inner = (
     <span className="flex items-center">
-      <span className="transition-[margin] duration-500 ease-[--ease-brand] group-hover:mr-1.5">
+      <span className="transition-[margin] duration-300 ease-[--ease-brand] group-hover:mr-1.5">
         {children}
       </span>
-      <span className="flex w-0 items-center overflow-hidden opacity-0 transition-[width,opacity,transform] duration-500 ease-[--ease-brand] -translate-x-1 group-hover:w-4 group-hover:translate-x-0 group-hover:opacity-100">
+      <span className="flex w-0 items-center overflow-hidden opacity-0 transition-[width,opacity] delay-75 duration-300 ease-[--ease-brand] group-hover:w-4 group-hover:opacity-100">
         <Icon size={15} strokeWidth={2.5} aria-hidden />
       </span>
     </span>

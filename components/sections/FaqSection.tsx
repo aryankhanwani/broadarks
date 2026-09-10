@@ -16,7 +16,7 @@ import { ORG } from "@/lib/site";
  * reading anchored to the section title.
  */
 export default function FaqSection({
-  eyebrow = "FAQ",
+  eyebrow = "FAQs",
   title = "Common",
   highlight = "questions.",
   items,
