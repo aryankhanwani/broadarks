@@ -6,11 +6,12 @@ import Container from "@/components/ui/Container";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
+import PersonCard from "@/components/ui/PersonCard";
 import { type FaqItem } from "@/components/ui/Faq";
 import FaqSection from "@/components/sections/FaqSection";
 import CtaBand from "@/components/ui/CtaBand";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/motion";
-import { EXPERIENCE, ORG, PEOPLE, PMV, type Person } from "@/lib/site";
+import { EXPERIENCE, ORG, PEOPLE, PMV } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About BroadArks Technology Pvt. Ltd. | Bhopal, India — ISO 9001:2015",
@@ -102,45 +103,6 @@ const LEADERSHIP_GROUPS = [
   },
 ];
 
-function PersonCard({ person, featured }: { person: Person; featured?: boolean }) {
-  return (
-    <article
-      className={
-        featured
-          ? "h-full rounded-card border border-line bg-white p-6 shadow-card sm:p-8"
-          : "h-full rounded-card border border-line bg-white p-6 sm:p-7"
-      }
-    >
-      <div className="flex items-start gap-4">
-        <span
-          aria-hidden
-          className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-primary-500 font-heading text-sm font-semibold text-white sm:h-14 sm:w-14 sm:text-base"
-        >
-          {person.initials}
-        </span>
-        <div className="min-w-0">
-          <h3 className="t-h4 text-ink">{person.name}</h3>
-          <p className="mt-0.5 text-sm font-medium text-primary-600">{person.role}</p>
-        </div>
-      </div>
-
-      <div className={featured ? "mt-5 space-y-3" : "mt-4 space-y-2.5"}>
-        {person.bio.map((para) => (
-          <p key={para.slice(0, 40)} className={featured ? "t-body text-[15px]" : "t-body text-[14px]"}>
-            {para}
-          </p>
-        ))}
-      </div>
-
-      {person.credential && (
-        <p className="mt-5 border-t border-line pt-4 text-xs font-medium uppercase tracking-[0.08em] text-gray-500">
-          {person.credential}
-        </p>
-      )}
-    </article>
-  );
-}
-
 export default function AboutPage() {
   const personJsonLd = {
     "@context": "https://schema.org",
@@ -175,20 +137,21 @@ export default function AboutPage() {
             title="Purpose, mission"
             highlight="and vision."
             subtitle={`We run four divisions, each with its own focus. The parent company holds the legal, financial and governance side for all four. We are ${ORG.iso} certified and based in Bhopal, Madhya Pradesh.`}
+            subtitleClassName="text-[13.5px] sm:text-[14px]"
           />
 
-          <Stagger className="mt-10 grid gap-5 lg:grid-cols-3 lg:gap-6">
+          <Stagger className="mt-10 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-3">
             {[
-              { label: "Our purpose", body: PMV.purpose, rule: "border-primary-500" },
-              { label: "Our mission", body: PMV.mission, rule: "border-secondary-500" },
-              { label: "Our vision", body: PMV.vision, rule: "border-primary-300" },
+              { n: "01", label: "Purpose", body: PMV.purpose },
+              { n: "02", label: "Mission", body: PMV.mission },
+              { n: "03", label: "Vision", body: PMV.vision },
             ].map((item) => (
-              <StaggerItem
-                key={item.label}
-                className={`rounded-card border-l-2 ${item.rule} bg-surface p-6 sm:p-7`}
-              >
-                <h2 className="eyebrow text-secondary-700">{item.label}</h2>
-                <p className="mt-3.5 text-[15px] leading-relaxed text-ink">{item.body}</p>
+              <StaggerItem key={item.label} className="flex flex-col bg-white p-6 sm:p-7">
+                <span className="font-heading text-[13px] font-semibold tabular-nums text-secondary-700">
+                  {item.n}
+                </span>
+                <h2 className="t-h4 mt-3 text-ink">{item.label}</h2>
+                <p className="mt-2.5 text-[14.5px] leading-relaxed text-ink-muted">{item.body}</p>
               </StaggerItem>
             ))}
           </Stagger>
@@ -224,9 +187,7 @@ export default function AboutPage() {
                 one strategy, one governance framework.
               </Reveal>
               <Reveal delay={0.26} className="mt-8 flex flex-wrap gap-3">
-                <Button href="/divisions" variant="secondary">
-                  See the four divisions
-                </Button>
+                <Button href="/divisions">See the four divisions</Button>
                 <Button href="#leadership" variant="secondary">
                   Meet the team
                 </Button>
@@ -239,23 +200,42 @@ export default function AboutPage() {
       {/* Experience & readiness ------------------------------------------ */}
       <section className="section-y bg-white">
         <Container>
-          <SectionHeading
-            eyebrow="Selected experience"
-            title="Evidence-led delivery,"
-            highlight="not promises."
-            subtitle="A sample of the work behind the group's partnership readiness — implementation, programme design and community delivery."
-          />
-          <Stagger className="mt-10 grid gap-px overflow-hidden rounded-card bg-line sm:grid-cols-2">
-            {EXPERIENCE.map((item, i) => (
-              <StaggerItem key={item.title} className="bg-white p-6 sm:p-8">
-                <span className="font-heading text-[13px] font-semibold tabular-nums text-secondary-700">
-                  0{i + 1}
-                </span>
-                <h3 className="t-h4 mt-3 text-ink">{item.title}</h3>
-                <p className="t-body mt-2.5 text-[15px]">{item.body}</p>
-              </StaggerItem>
-            ))}
-          </Stagger>
+          <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+            <Reveal y={26} className="lg:col-span-5">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-card shadow-lift">
+                <Image
+                  src="/images/story/livelihoods.jpg"
+                  alt="A BroadArks-delivered programme in the field"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                />
+              </div>
+            </Reveal>
+
+            <div className="lg:col-span-7">
+              <SectionHeading
+                eyebrow="Selected experience"
+                title="Evidence-led delivery,"
+                highlight="not promises."
+              />
+              <Stagger className="mt-8 border-t border-line" stagger={0.06}>
+                {EXPERIENCE.map((item, i) => (
+                  <StaggerItem
+                    key={item.title}
+                    className="flex items-baseline gap-4 border-b border-line py-4"
+                  >
+                    <span className="shrink-0 font-heading text-[13px] font-semibold tabular-nums text-secondary-700">
+                      0{i + 1}
+                    </span>
+                    <h3 className="font-heading text-[15px] font-semibold leading-snug tracking-tight text-ink">
+                      {item.title}
+                    </h3>
+                  </StaggerItem>
+                ))}
+              </Stagger>
+            </div>
+          </div>
         </Container>
       </section>
 
@@ -321,17 +301,15 @@ export default function AboutPage() {
             ))}
           </Stagger>
 
-          <Reveal delay={0.12} className="mt-6 overflow-hidden rounded-card border border-line">
-            <dl className="divide-y divide-line">
+          <Reveal delay={0.12} className="mt-10">
+            <h3 className="eyebrow text-gray-500">The legal record</h3>
+            <dl className="mt-4 grid grid-cols-1 gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">
               {RECORD.map((row) => (
-                <div
-                  key={row.label}
-                  className="grid gap-1 px-5 py-4 sm:grid-cols-3 sm:gap-6 sm:px-7 sm:py-5"
-                >
-                  <dt className="text-[13px] font-semibold uppercase tracking-[0.08em] text-gray-500">
+                <div key={row.label} className="bg-white px-5 py-4 sm:px-6 sm:py-5">
+                  <dt className="text-[11.5px] font-semibold uppercase tracking-[0.08em] text-gray-500">
                     {row.label}
                   </dt>
-                  <dd className="text-[15px] leading-relaxed sm:col-span-2">
+                  <dd className="mt-1.5 text-[14.5px] leading-relaxed">
                     {row.value ? (
                       <span className="text-ink">{row.value}</span>
                     ) : (

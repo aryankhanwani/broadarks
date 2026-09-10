@@ -9,14 +9,11 @@ import { DIVISIONS, ONE_LINE, divisionHref, type Division } from "@/lib/site";
 /* ================================================================
    DIVISIONS SHOWCASE
 
-   Four cards, all open, all the same shape.
-
-   This replaced a set of hover-expanding panels that showed one
-   division at a time and collapsed into an accordion on phones.
-   Three separate mechanics for four items is more machinery than
-   the content needs: the divisions are the reason most people are
-   on this site, so all four are visible at once, with a photograph
-   doing the describing and one line of type doing the rest.
+   Four cells in one hairline grid — square corners, no gap between
+   them, a single 1px rule doing the separating. Four cards floating
+   with gaps and rounded corners read as four different products;
+   one gridded plate reads as four faces of the same organisation,
+   which is the actual point of this section.
    ================================================================ */
 
 export default function DivisionsShowcase({
@@ -40,7 +37,10 @@ export default function DivisionsShowcase({
           subtitle={subtitle ?? ONE_LINE}
         />
 
-        <Stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:gap-6" stagger={0.08}>
+        <Stagger
+          className="mt-10 grid grid-cols-1 gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:mt-12"
+          stagger={0.08}
+        >
           {DIVISIONS.map((d) => (
             <StaggerItem key={d.slug} className="flex">
               <DivisionCard division={d} />
@@ -56,7 +56,7 @@ export default function DivisionsShowcase({
 
 function DivisionCard({ division: d }: { division: Division }) {
   return (
-    <article className="group relative flex w-full flex-col overflow-hidden rounded-card border border-line bg-white transition-[border-color,box-shadow,transform] duration-[--duration-base] ease-[--ease-brand] hover:-translate-y-1 hover:border-primary-200 hover:shadow-lift">
+    <article className="group relative flex w-full flex-col overflow-hidden bg-white transition-colors duration-[--duration-base] ease-[--ease-brand] hover:bg-surface">
       <div className="relative aspect-[16/10] overflow-hidden bg-surface-2">
         <Image
           src={d.image}
@@ -78,8 +78,7 @@ function DivisionCard({ division: d }: { division: Division }) {
       </div>
 
       <div className="flex flex-1 flex-col p-6 sm:p-7">
-        <p className="eyebrow text-secondary-700">{d.mandate}</p>
-        <h3 className="t-h3 mt-2.5 text-ink">{d.name}</h3>
+        <h3 className="t-h3 text-ink">{d.name}</h3>
         <p className="mt-2 text-[14.5px] leading-relaxed text-ink-muted">{d.tagline}</p>
 
         <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-line pt-5">

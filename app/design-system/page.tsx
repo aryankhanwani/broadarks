@@ -82,8 +82,8 @@ export default function DesignSystemPage() {
       {/* TYPOGRAPHY ---------------------------------------------------- */}
       <Block
         eyebrow="01 · Typography"
-        title="Instrument Sans + Inter"
-        note="Headings are set in Instrument Sans — a contemporary grotesque with a tall x-height that holds authority at display sizes without shouting. Body copy is Inter, which reads better than anything else at 15–16px on a phone. This replaces the Brand Book's Montserrat for running text; Montserrat remains the logo typeface and the lockup is unchanged."
+        title="Bricolage Grotesque + Inter"
+        note="Headings are set in Bricolage Grotesque — a variable display grotesque with a distinctive personality at large sizes that holds attention without tipping into a novelty face. Body copy is Inter, which reads better than anything else at 15–16px on a phone. This replaces the Brand Book's Montserrat for running text; Montserrat remains the logo typeface and the lockup is unchanged."
       >
         <div className="divide-y divide-line border-b border-line">
           <Row label=".t-display">
@@ -355,11 +355,11 @@ export default function DesignSystemPage() {
         <div className="divide-y divide-line border-y border-line">
           {[
             ["Hero", "Full-bleed video carousel, fixed two-line H1, pause control. Homepage only — the one dark surface on the site."],
-            ["ProofBand", "Four figures plus a marquee of the organisations Y&Now works with. Labelled as Y&Now's clients, not BroadArks's."],
-            ["WhyWeExist", "Two photo plates drifting at different rates against the reader's own scroll. ~40px of travel, no more."],
-            ["DivisionsShowcase", "Expanding panels on desktop, accordion below lg. The routing mechanism for the whole group."],
-            ["Principles", "Four rules as an editorial register. Everything visible; hover is a state, not a way to reach content."],
-            ["LeadershipGrid", "The whole bench at once — two founders, then senior team and advisers four-up."],
+            ["ProofBand", "Four figures stated plainly. No marquee."],
+            ["WhyWeExist", "A single photo plate drifting against the reader's own scroll. ~40px of travel, no more."],
+            ["DivisionsShowcase", "A four-up hairline grid, square corners, no gaps. The routing mechanism for the whole group."],
+            ["Principles", "A hover-driven list on the left, one vertical photo on the right that swaps with the active row."],
+            ["LeadershipGrid", "The two founders only, as photo cards. Full bench lives on /about."],
             ["FaqSection", "Sticky heading left, accordion right. Emits FAQPage JSON-LD from the page that uses it."],
             ["CtaBand", "The closing block on every page. One named next step."],
           ].map(([name, what]) => (

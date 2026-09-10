@@ -99,7 +99,7 @@ export default function Header() {
 
       {/* The capsule, from the very first pixel on every page — it
           firms up on scroll rather than materialising on scroll. */}
-      <div className="relative z-50 mx-auto mt-3 max-w-6xl px-4 transition-all duration-500 ease-[--ease-brand] sm:mt-4 sm:px-6">
+      <div className="relative z-50 mx-auto mt-3 max-w-7xl px-5 transition-all duration-500 ease-[--ease-brand] sm:mt-4 sm:px-6 lg:px-8">
         <div
           className={cn(
             "flex h-14 items-center justify-between gap-4 rounded-pill border px-3 pl-5 backdrop-blur-xl transition-all duration-500 ease-[--ease-brand] sm:h-16 sm:pl-6",
@@ -160,14 +160,14 @@ export default function Header() {
           {/* ---- Desktop CTA ------------------------------------- */}
           <Link
             href="/contact"
-            className="group hidden items-center gap-2 rounded-pill bg-primary-500 px-5 py-2.5 text-[13.5px] font-semibold text-white transition-all duration-300 ease-[--ease-brand] hover:bg-primary-600 lg:inline-flex"
+            className="group hidden items-center gap-2 rounded-pill bg-primary-500 px-5 py-2.5 text-[13.5px] font-semibold text-white transition-all duration-500 ease-[--ease-brand] will-change-transform hover:-translate-y-0.5 hover:bg-primary-600 hover:shadow-lift lg:inline-flex"
           >
             Talk to us
             <ArrowUpRight
               size={15}
               strokeWidth={2.5}
               aria-hidden
-              className="transition-transform duration-300 ease-[--ease-brand] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              className="transition-transform duration-500 ease-[--ease-brand] group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             />
           </Link>
 
@@ -195,9 +195,9 @@ export default function Header() {
               transition={{ duration: reduce ? 0 : 0.26, ease: EASE }}
               onMouseEnter={openMega}
               onMouseLeave={closeMega}
-              className="absolute inset-x-0 top-full hidden px-6 lg:block"
+              className="absolute inset-x-0 top-full hidden px-5 sm:px-6 lg:block lg:px-8"
             >
-              <div className="mx-auto mt-2 max-w-6xl overflow-hidden rounded-card border border-line bg-white/95 p-2 shadow-lift backdrop-blur-xl">
+              <div className="mx-auto mt-2 max-w-7xl overflow-hidden rounded-card border border-line bg-white/95 p-2 shadow-lift backdrop-blur-xl">
                 <div className="grid grid-cols-4 gap-2">
                   {DIVISIONS.map((d) => (
                     <Link

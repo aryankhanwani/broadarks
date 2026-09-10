@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Sans, Inter } from "next/font/google";
+import { Bricolage_Grotesque, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -7,22 +7,23 @@ import Footer from "@/components/layout/Footer";
 /* ------------------------------------------------------------------
    TYPEFACES
 
-   Headings — Instrument Sans. A contemporary grotesque with a tall
-   x-height, tight apertures and near-neutral letterforms. It holds
-   authority at display sizes without the shout of a heavy geometric,
-   and stays legible down to 14px on a phone. Chosen over the Brand
-   Book's Montserrat ExtraBold, which is a *logo* face: beautiful in
-   the lockup, but its wide, circular bowls cost line-length and
-   readability across the long institutional copy this site carries.
-   The logo lockup itself is unchanged.
+   Headings — Bricolage Grotesque. A variable display grotesque with
+   a distinctive, slightly condensed personality at large sizes —
+   it holds attention the way a purely neutral grotesque (Instrument
+   Sans, Inter) doesn't, without tipping into a novelty face. Free,
+   self-hosted via next/font/google, variable weight 200–800. Chosen
+   over the Brand Book's Montserrat ExtraBold, which is a *logo*
+   face: beautiful in the lockup, but its wide, circular bowls cost
+   line-length and readability across the long institutional copy
+   this site carries. The logo lockup itself is unchanged.
 
    Body — Inter. Designed for UI reading at small sizes; the highest
    readability-per-pixel of any open grotesque, and it sets tabular
    numerals cleanly for the proof figures.
    ------------------------------------------------------------------ */
-const instrumentSans = Instrument_Sans({
+const headingFont = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: "variable",
   variable: "--font-heading-sans",
   display: "swap",
 });
@@ -56,7 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSans.variable} ${inter.variable} antialiased`}
+      className={`${headingFont.variable} ${inter.variable} antialiased`}
     >
       <body className="min-h-screen flex flex-col bg-white font-body text-ink">
         {/* First tab stop. The header carries six nav links and a CTA

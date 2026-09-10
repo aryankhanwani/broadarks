@@ -5,18 +5,11 @@ import { Cpu, GitMerge, ScrollText, Target } from "lucide-react";
 import Container from "@/components/ui/Container";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
-import CtaBand from "@/components/ui/CtaBand";
 import Eyebrow from "@/components/ui/Eyebrow";
 import Button from "@/components/ui/Button";
+import IntegrationModel from "@/components/sections/IntegrationModel";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/motion";
-import {
-  INTEGRATION_MODEL,
-  LIVE_DIVISIONS,
-  ORG,
-  PARTNER_VALUE,
-  PARTNERSHIP_MODEL,
-  divisionHref,
-} from "@/lib/site";
+import { LIVE_DIVISIONS, ORG, PARTNER_VALUE, PARTNERSHIP_MODEL, divisionHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "The BroadArks Approach — Integrated Delivery Under One Arm",
@@ -93,40 +86,9 @@ export default function ApproachPage() {
       </section>
 
       {/* Integration model ------------------------------------------------- */}
-      <section className="section-y bg-surface">
-        <Container>
-          <SectionHeading
-            eyebrow="The BroadArks integration model"
-            title="Five steps, from need"
-            highlight="to measurable outcome."
-            subtitle="Every division has a defined role at every step, so nothing falls between two vendors."
-          />
-
-          <Stagger className="relative mt-12" stagger={0.09}>
-            {/* The connecting rail behind the step markers. */}
-            <span
-              aria-hidden
-              className="absolute bottom-8 left-[19px] top-2 hidden w-px bg-line sm:block"
-            />
-            {INTEGRATION_MODEL.map((m) => (
-              <StaggerItem
-                key={m.step}
-                className="relative grid gap-4 pb-10 last:pb-0 sm:grid-cols-12 sm:gap-8"
-              >
-                <div className="flex items-start gap-5 sm:col-span-4">
-                  <span className="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-full border border-primary-200 bg-white font-heading text-[13px] font-semibold tabular-nums text-primary-600 shadow-card">
-                    {m.step}
-                  </span>
-                  <h3 className="t-h4 pt-2 text-ink">{m.title}</h3>
-                </div>
-                <p className="t-body pl-[60px] text-[15px] sm:col-span-8 sm:pl-0 sm:pt-2">
-                  {m.body}
-                </p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </Container>
-      </section>
+      <div className="bg-surface">
+        <IntegrationModel />
+      </div>
 
       {/* Integrated value to partners --------------------------------------- */}
       <section className="section-y bg-white">
@@ -157,23 +119,24 @@ export default function ApproachPage() {
             eyebrow="Working with BroadArks"
             title="What an engagement"
             highlight="may include."
-            subtitle="Roles, milestones and success indicators are agreed at the outset — with corporate CSR teams, government agencies, institutions and industry partners alike."
+            subtitle="Agreed at the outset with corporate CSR teams, government agencies, institutions and industry partners alike."
           />
 
-          <Stagger className="mt-10 grid border-t border-line sm:grid-cols-2 sm:gap-x-12">
+          <Stagger
+            className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-card bg-line sm:grid-cols-4"
+            stagger={0.04}
+          >
             {PARTNERSHIP_MODEL.map((p) => (
               <StaggerItem
                 key={p.title}
-                className="flex flex-col gap-1 border-b border-line py-4 sm:flex-row sm:items-baseline sm:gap-6"
+                className="flex min-h-[6.5rem] flex-col justify-center bg-white p-5 text-center"
               >
-                <h3 className="font-heading text-[15px] font-semibold tracking-tight text-ink sm:w-[11rem] sm:shrink-0">
+                <span className="font-heading text-[14px] font-semibold leading-snug tracking-tight text-ink">
                   {p.title}
-                </h3>
-                <p className="text-[14px] leading-relaxed text-ink-muted">{p.body}</p>
+                </span>
               </StaggerItem>
             ))}
           </Stagger>
-
         </Container>
       </section>
 
@@ -212,22 +175,14 @@ export default function ApproachPage() {
             tracking. We use it where it makes a programme measurably better.
           </Reveal>
           <Reveal delay={0.26} className="mt-8 flex flex-wrap gap-3">
-            {LIVE_DIVISIONS.map((d) => (
-              <Button key={d.slug} href={divisionHref(d)} variant="secondary">
+            {LIVE_DIVISIONS.map((d, i) => (
+              <Button key={d.slug} href={divisionHref(d)} variant={i === 0 ? "primary" : "secondary"}>
                 {d.name}
               </Button>
             ))}
           </Reveal>
         </Container>
       </section>
-
-      <CtaBand
-        title="Want the model applied"
-        highlight="to your problem?"
-        body="Tell us what you need and what you are working with. We will tell you which division fits — or that we are the wrong people for it."
-        primary={{ label: "Start a conversation", href: "/contact" }}
-        secondary={{ label: "About BroadArks", href: "/about" }}
-      />
     </>
   );
 }

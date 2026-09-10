@@ -235,7 +235,7 @@ export const LINKAGE_ROLES: { name: string; role: string }[] = [
 ];
 
 export const LINKAGE_CLOSE =
-  "Each can lead a specialist mandate, while BroadArks Technology integrates them for complex, multi-year assignments.";
+  "Each division can lead alone. BroadArks integrates all four for the complex, multi-year work.";
 
 export const LINKAGE =
   "Y&Now builds human capability; BroadArks Foundation anchors community access and CSR delivery; Kari Green embeds sustainability and green-economy relevance; and Vihaanga AI provides the digital intelligence layer. Each can lead a specialist mandate, while BroadArks Technology integrates them for complex, multi-year assignments.";
@@ -248,26 +248,31 @@ export const INTEGRATION_MODEL = [
     step: "01",
     title: "Understand & diagnose",
     body: "The Foundation maps communities; Y&Now assesses skill gaps; Kari Green identifies sustainability levers; Vihaanga AI structures data and baselines.",
+    image: "/images/story/employability.jpg",
   },
   {
     step: "02",
     title: "Design the solution",
     body: "A shared team converts the diagnosis into outcomes, curricula, infrastructure, technology, inclusion measures, budgets, KPIs and an implementation roadmap.",
+    image: "/images/story/program-planning.png",
   },
   {
     step: "03",
     title: "Mobilise & deliver",
     body: "The Foundation leads field engagement; Y&Now delivers training; Kari Green integrates green practices; Vihaanga AI supports digital learning and visibility.",
+    image: "/images/story/classroom.jpg",
   },
   {
     step: "04",
     title: "Connect to opportunity",
     body: "Industry exposure, on-the-job training, placement, self-employment, enterprise incubation, market linkages and green-economy opportunities are activated.",
+    image: "/images/story/livelihoods.jpg",
   },
   {
     step: "05",
     title: "Measure, improve & scale",
     body: "Dashboards and analytics connect learning, employment, social and environmental indicators to partner reporting and continuous improvement.",
+    image: "/images/story/team-collaboration.png",
   },
 ] as const;
 
@@ -341,6 +346,9 @@ export interface Person {
   bio: string[];
   credential?: string;
   initials: string;
+  /** Portrait, 3:4. Falls back to an initials plate when absent. */
+  image?: string;
+  linkedin?: string;
 }
 
 export const PEOPLE: Person[] = [
@@ -352,6 +360,7 @@ export const PEOPLE: Person[] = [
       "17+ years in strategy and business development at Sony Pictures, Paramount, Tata and Globe Telecom.",
     initials: "PD",
     credential: "Alumnus, IIM Rohtak",
+    image: "/images/team/pankaj.jpg",
     bio: [
       "Pankaj Dutta is the Founder and CEO of BroadArks Technology. He has over 17 years of experience in strategy, business development and project management, having held senior roles at Sony Pictures, Paramount Pictures, Globe Telecom and Tata across Europe, the UAE, South East Asia and the US. He leads group strategy, partnerships and growth.",
       "He is an alumnus of IIM Rohtak. Pankaj believes that formal education alone cannot meet employability requirements, and that structured skilling is essential if India's workforce is to realise its potential.",
@@ -365,6 +374,7 @@ export const PEOPLE: Person[] = [
       "15+ years in learning design and vocational education. Visiting faculty at NIFT.",
     initials: "KD",
     credential: "Visiting faculty, NIFT",
+    image: "/images/team/kaveri.jpg",
     bio: [
       "Dr. Kaveri Dutta is Co-Founder and Chief Learning Officer of BroadArks Technology, bringing over 15 years in learning and development, curriculum design and vocational education. She leads learning architecture, programme quality and industry–academia engagement. She holds a post-graduate degree from SNDT Mumbai in Textiles and a post-graduate Diploma in Hospitality and Administration Management.",
       "She is visiting faculty at the National Institute of Fashion Technology and holds board memberships at the Paris Institute of Fashion Technology and the Beijing Institute of Fashion Technology. She writes regularly for leading journals on fashion, handlooms, handicrafts and sustainable design.",
@@ -378,6 +388,7 @@ export const PEOPLE: Person[] = [
       "Chartered Accountant with 14+ years leading finance at Vodafone, Tata Teleservices and Airtel.",
     initials: "TA",
     credential: "Chartered Accountant · DISA, DIRM, FAFD, Ind AS",
+    image: "/images/team/tarun.jpg",
     bio: [
       "Tarun Abbhani is BroadArks Technology's Chief Financial Officer. A qualified Chartered Accountant with post-qualification certifications in DISA, DIRM, FAFD and Ind AS, he brings 14+ years of financial leadership across Vodafone, Tata Teleservices and Airtel.",
       "He leads BroadArks's financial strategy, operational KPIs and financial governance.",
@@ -391,6 +402,7 @@ export const PEOPLE: Person[] = [
       "24 years across Markem-Imaje, United Biscuits and Wrigley’s India. Leads planning and IT.",
     initials: "SM",
     credential: "B.Com (Hons), St. Xavier's College, Kolkata",
+    image: "/images/team/souri.jpg",
     bio: [
       "Souri Mukherjee leads financial planning and analysis alongside IT and cloud strategy at BroadArks. He brings 24 years of experience from Markem-Imaje, United Biscuits (McVitie's) and Wrigley's India.",
       "He believes that access to education, skills and the right attitude enables every person to thrive.",
@@ -404,6 +416,7 @@ export const PEOPLE: Person[] = [
       "26 years in the development sector with UN agencies and international NGOs across eight countries.",
     initials: "PN",
     credential: "MSc Development Studies, University of Bristol",
+    image: "/images/team/pradeep.jpg",
     bio: [
       "Pradeep Narayanan brings over 26 years in the development sector, having worked with UN agencies, bilateral organisations and international NGOs across India, Cambodia, Jordan, Bhutan, Bangladesh, Nepal and Serbia.",
       "His expertise spans monitoring and evaluation systems, thematic planning and funding strategy for social impact programmes.",
@@ -417,6 +430,7 @@ export const PEOPLE: Person[] = [
       "Entrepreneur running a skilled-labour manufacturing business. Advises on industry partnerships.",
     initials: "BG",
     credential: "Founder — advanced printing & fabrication",
+    image: "/images/team/brajendra.jpg",
     bio: [
       "Brajendra Gupta is a serial entrepreneur and founder of a state-of-the-art printing and fabricating unit. He brings a practitioner's view of vocational and technical workforce development, built on running a skilled-labour-intensive business on advanced manufacturing technology.",
       "He advises BroadArks on sector connectivity and enterprise partnerships.",

@@ -14,6 +14,7 @@ interface SectionHeadingProps {
   onDark?: boolean;
   className?: string;
   titleClassName?: string;
+  subtitleClassName?: string;
   id?: string;
 }
 
@@ -31,6 +32,7 @@ export default function SectionHeading({
   onDark = false,
   className,
   titleClassName,
+  subtitleClassName,
   id,
 }: SectionHeadingProps) {
   const centered = align === "center";
@@ -66,6 +68,7 @@ export default function SectionHeading({
             "mt-4 text-[15px] leading-relaxed sm:text-base",
             onDark ? "text-white/70" : "text-ink-muted",
             centered ? "max-w-2xl" : "max-w-xl",
+            subtitleClassName,
           )}
         >
           {subtitle}

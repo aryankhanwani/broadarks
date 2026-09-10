@@ -1,58 +1,64 @@
 "use client";
 
+import Image from "next/image";
+import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
-import { Reveal, Stagger, StaggerItem } from "@/components/ui/motion";
+import { EASE, Reveal, Stagger, StaggerItem } from "@/components/ui/motion";
 
 /* ================================================================
-   PRINCIPLES
+   PRINCIPLES / "HOW WE WORK"
 
-   Four rules, as an editorial register: number in the margin, rule
-   on the left, plain-English gloss on the right, hairline between.
+   A numbered list on the left, one vertical photograph on the
+   right. Only the active row carries a solid fill — everything
+   else sits flat against the page — and hovering a row swaps the
+   photograph rather than revealing hidden copy, so the interaction
+   stays a state change, not a mechanism for reaching content that
+   is otherwise hidden.
 
-   Everything is on screen at once and nothing is hidden behind a
-   click. That is the point — with four items of two lines each,
-   any control that reveals one at a time costs the reader more
-   than it saves them. The interaction is a hover state on a row,
-   not a mechanism for getting at the content.
+   Square corners throughout, on purpose: this is the one section
+   on the site built as a plate, not a set of cards.
    ================================================================ */
 
 const PRINCIPLES = [
   {
     n: "01",
     rule: "Outcomes first",
-    gloss: "We agree what success is, and how it gets measured, before delivery starts.",
+    image: "/images/story/team-collaboration.png",
+    alt: "A BroadArks team reviewing programme outcomes together",
   },
   {
     n: "02",
     rule: "Certified delivery",
-    gloss: "ISO 9001:2015 across the whole company, renewed by external audit.",
+    image: "/images/story/iso-9001.png",
+    alt: "BroadArks' ISO 9001:2015 certification",
   },
   {
     n: "03",
     rule: "Technology where it earns it",
-    gloss: "Digital tools run the testing and reporting because they make the work checkable.",
+    image: "/images/story/plant-floor.jpg",
+    alt: "Technology-enabled testing on a plant floor",
   },
   {
     n: "04",
     rule: "Shared foundations",
-    gloss: "One set of books, one governance standard, four specialist teams.",
+    image: "/images/story/classroom.jpg",
+    alt: "A classroom session run under BroadArks' shared standard",
   },
 ];
 
 export default function Principles() {
+  const [active, setActive] = useState(0);
+  const reduce = useReducedMotion();
+
   return (
     <section className="section-y bg-white">
       <Container>
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
           <div className="lg:col-span-7">
-            <SectionHeading
-              eyebrow="How we work"
-              title="Four divisions."
-              highlight="One standard."
-              subtitle="Different audiences and different programmes, held to the same four rules."
-            />
+            <SectionHeading eyebrow="How we work" title="Four divisions." highlight="One standard." />
           </div>
           <Reveal delay={0.2} className="lg:col-span-5 lg:justify-self-end">
             <Button href="/approach" variant="secondary">
@@ -61,34 +67,62 @@ export default function Principles() {
           </Reveal>
         </div>
 
-        <Stagger className="mt-12 border-t border-line" stagger={0.09}>
-          {PRINCIPLES.map((p) => (
-            <StaggerItem key={p.n}>
-              {/* The row is a group so the numeral, rule and underline all
-                  respond to one hover, wherever on the row it lands. */}
-              <div className="group relative grid items-baseline gap-x-8 gap-y-2 border-b border-line py-7 transition-colors duration-500 sm:grid-cols-12 sm:py-9">
-                <span className="col-span-1 font-heading text-[13px] font-semibold tabular-nums text-gray-500 transition-colors duration-500 group-hover:text-secondary-700">
-                  {p.n}
-                </span>
+        <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <Stagger className="border-t border-line lg:col-span-6" stagger={0.09}>
+            {PRINCIPLES.map((p, i) => (
+              <StaggerItem key={p.n}>
+                <button
+                  type="button"
+                  onMouseEnter={() => setActive(i)}
+                  onFocus={() => setActive(i)}
+                  className={`group relative flex w-full items-baseline gap-x-6 gap-y-2 border-b border-line px-5 py-7 text-left transition-colors duration-500 sm:py-8 ${
+                    active === i ? "bg-primary-500" : "bg-transparent hover:bg-surface"
+                  }`}
+                >
+                  <span
+                    className={`shrink-0 font-heading text-[13px] font-semibold tabular-nums transition-colors duration-500 ${
+                      active === i ? "text-white/70" : "text-gray-500"
+                    }`}
+                  >
+                    {p.n}
+                  </span>
 
-                <h3 className="font-heading text-[clamp(1.25rem,1.05rem+0.9vw,1.75rem)] font-semibold leading-tight tracking-tight text-ink sm:col-span-5">
-                  {p.rule}
-                </h3>
+                  <span
+                    className={`block min-w-0 font-heading text-[clamp(1.15rem,1rem+0.7vw,1.5rem)] font-semibold leading-tight tracking-tight transition-colors duration-500 ${
+                      active === i ? "text-white" : "text-ink"
+                    }`}
+                  >
+                    {p.rule}
+                  </span>
+                </button>
+              </StaggerItem>
+            ))}
+          </Stagger>
 
-                <p className="text-[15px] leading-relaxed text-ink-muted sm:col-span-6">
-                  {p.gloss}
-                </p>
-
-                {/* Accent rule drawing across the bottom edge — the whole
-                    hover affordance, and it costs one pseudo-element. */}
-                <span
-                  aria-hidden
-                  className="absolute inset-x-0 bottom-[-1px] h-px w-0 bg-primary-500 transition-[width] duration-700 ease-[--ease-brand] group-hover:w-full"
-                />
-              </div>
-            </StaggerItem>
-          ))}
-        </Stagger>
+          <div className="lg:col-span-6">
+            <div className="relative aspect-[4/3] overflow-hidden bg-surface-2">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={active}
+                  initial={{ opacity: reduce ? 1 : 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: reduce ? 1 : 0 }}
+                  transition={{ duration: reduce ? 0 : 0.45, ease: EASE }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={PRINCIPLES[active].image}
+                    alt={PRINCIPLES[active].alt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                    className="object-cover"
+                    priority={active === 0}
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
       </Container>
     </section>
   );

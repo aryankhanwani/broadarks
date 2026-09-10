@@ -67,7 +67,6 @@ function DivisionSection({ division: d, flip }: { division: Division; flip: bool
               <span className="font-heading text-[13px] font-semibold tabular-nums text-gray-500">
                 {d.index}
               </span>
-              <Eyebrow>{d.mandate}</Eyebrow>
               {!isLive && (
                 <span className="inline-flex items-center gap-1.5 rounded-pill border border-line bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500">
                   <CircleDashed size={11} aria-hidden />
@@ -210,9 +209,9 @@ export default function DivisionsPage() {
 
       <DivisionsShowcase
         eyebrow="At a glance"
-        title="Who does what,"
-        highlight="and where to find them."
-        subtitle="Two take enquiries at their own sites today. Two operate through the parent company while their sites are built."
+        title="Who does what, and"
+        highlight="where to find them."
+        subtitle=""
       />
 
       {/* The linkage ------------------------------------------------------ */}
