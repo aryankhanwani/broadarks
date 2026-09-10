@@ -75,7 +75,8 @@ export default function Principles() {
                   type="button"
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
-                  className={`group relative flex w-full items-baseline gap-x-6 gap-y-2 border-b border-line px-5 py-7 text-left transition-colors duration-500 sm:py-8 ${
+                  onClick={() => setActive(i)}
+                  className={`group relative flex w-full items-baseline gap-x-6 gap-y-2 border-b border-line px-5 py-5 text-left transition-colors duration-500 sm:py-7 ${
                     active === i ? "bg-primary-500" : "bg-transparent hover:bg-surface"
                   }`}
                 >

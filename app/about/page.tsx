@@ -9,7 +9,6 @@ import Button from "@/components/ui/Button";
 import PersonCard from "@/components/ui/PersonCard";
 import { type FaqItem } from "@/components/ui/Faq";
 import FaqSection from "@/components/sections/FaqSection";
-import CtaBand from "@/components/ui/CtaBand";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/motion";
 import { EXPERIENCE, ORG, PEOPLE, PMV } from "@/lib/site";
 
@@ -341,15 +340,6 @@ export default function AboutPage() {
 
       {/* FAQ -------------------------------------------------------------- */}
       <FaqSection title="About the" highlight="company." items={FAQS} className="bg-surface" />
-
-      <CtaBand
-        eyebrow="Compliance enquiries"
-        title="Need a document"
-        highlight="for your vendor file?"
-        body={`Email ${ORG.email} with the subject line "Compliance — [document]". We reply within two working days.`}
-        primary={{ label: "Contact BroadArks", href: "/contact" }}
-        secondary={{ label: "Explore our divisions", href: "/divisions" }}
-      />
     </>
   );
 }
